@@ -2,8 +2,11 @@ package com.git.juan.marini.navigation.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -16,16 +19,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 @Composable
-fun MenuScreen(modifier: Modifier = Modifier) {
-    Column(
+fun MenuScreen(modifier: Modifier = Modifier, navController: NavController) {
+    Box(
         modifier = modifier
             .fillMaxSize()
             .background(Color(0xFF2C4EC7))
-            .padding(32.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(32.dp)
     ) {
         Text(
             text = "MENU",
@@ -33,26 +35,34 @@ fun MenuScreen(modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold,
             color = Color.White
         )
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.White),
-            modifier = Modifier.size(200.dp, 48.dp)
+        Column(
+            modifier = Modifier.align(Alignment.Center),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Perfil", color = Color.Blue)
-        }
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.White),
-            modifier = Modifier.size(200.dp, 48.dp)
-        ) {
-            Text(text = "Pedidos", color = Color.Blue)
-        }
-        Button(
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(Color.White),
-            modifier = Modifier.size(200.dp, 48.dp)
-        ) {
-            Text(text = "Sair", color = Color.Blue)
+            Button(
+                onClick = { navController.navigate("perfil") },
+                colors = ButtonDefaults.buttonColors(Color.White),
+                modifier = Modifier.size(width = 200.dp, height = 48.dp)
+            ) {
+                Text(text = "Perfil", color = Color.Blue)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = { navController.navigate("pedidos") },
+                colors = ButtonDefaults.buttonColors(Color.White),
+                modifier = Modifier.size(width = 200.dp, height = 48.dp)
+            ) {
+                Text(text = "Pedidos", color = Color.Blue)
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Button(
+                onClick = { navController.navigate("login") },
+                colors = ButtonDefaults.buttonColors(Color.White),
+                modifier = Modifier.size(width = 200.dp, height = 48.dp)
+            ) {
+                Text(text = "Sair", color = Color.Blue)
+            }
         }
     }
 }
