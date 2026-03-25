@@ -17,6 +17,7 @@ import com.git.juan.marini.navigation.screens.MenuScreen
 import com.git.juan.marini.navigation.screens.PedidosScreen
 import com.git.juan.marini.navigation.screens.PerfilScreen
 import com.git.juan.marini.navigation.ui.theme.NavigationbetweenscreensTheme
+import androidx.navigation.NavType
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,12 +47,24 @@ class MainActivity : ComponentActivity() {
                             PerfilScreen(
                                 modifier = Modifier.padding(innerPadding),
                                 navController,
-                                nome!!
+                                nome!!,
+                                idade!!
                             )
                         }
-                        composable(route = "perfil/{nome}") {
+                        composable(
+                            route = "perfil/{nome}/{idade}",
+                            arguments = listOf(
+                                navArgument("nome") { type = NavType.StringType },
+                                navArgument("idade") { type = NavType.IntType }
+                            )
+                        ) {
                             val nome: String? = it.arguments?.getString("nome", "Usuário Genérico")
-                            PerfilScreen(modifier = Modifier.padding(innerPadding), navController, nome!!)
+                            val idade: Int? = it.arguments?.getInt("idade", 0)
+                            PedidosScreen(
+                                modifier = Modifier.padding(innerPadding),
+                                navController,
+                                it.arguments?.getString("cliente")
+                            )
                         }
                     }
                 }
