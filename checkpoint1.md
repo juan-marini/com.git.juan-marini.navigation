@@ -15,3 +15,5 @@ eu alterei 2 arquivos para implementar um parâmetro opcional na tela de Pedidos
 
 commit 4
 alterei 3 arquivos para implementar a passagem de parâmetro obrigatório na navegação. Na MainActivity.kt, mudei a rota de "perfil" para "perfil/{nome}" porque eu precisava que a tela de Perfil recebesse um dado dinâmico, e não apenas abrisse estática. Usei it.arguments?.getString("nome", "Usuário Genérico") para recuperar o valor passado na rota e encaminhei para a PerfilScreen. No MenuScreen.kt, alterei o navController.navigate("perfil") para navController.navigate("perfil/Fulano de Tal") porque agora a rota exige que o nome seja enviado junto, caso contrário a navegação falha. Na PerfilScreen.kt, adicionei o parâmetro nome: String na assinatura da composable e alterei o texto para "PERFIL- $nome" para que a tela exibisse dinamicamente o nome recebido em vez de um texto fixo
+
+https://github.com/juan-marini/com.git.juan-marini.navigation
